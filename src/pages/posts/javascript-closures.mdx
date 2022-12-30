@@ -1,0 +1,89 @@
+---
+layout: "@/layouts/BlogPost"
+title: Javascript Closures
+publishDate: 30 Dec 2022
+description: Closure is a function that has access to outer function variables from inner function scope.
+tags: ["javascript", "basics"]
+---
+
+## Closures
+
+By definition, a closure is a function that has access to outer function variables from inner function scope.
+
+Inorder to understand closure, let's first understand scope.
+
+### Scope
+
+When we define a variable, it exists in certain scope based on the block it is defined in. For Example:
+
+```
+function scope() {
+		let name = "variable scope";
+		console.log(name)
+	}
+```
+
+In the above function, the variable "name" is declared in global scope of the function block "scope()". Hence, it is accessible by all nested functions declared in the parent function block.
+
+### Nested Scope
+
+Let's see an example first,
+
+```
+function scope(){
+	let firstName = "global scope";
+	console.log(firstName)
+	function nestedScope() {
+		let lastName = "nested scope";
+		console.log(firstName + ' '+ lastName)
+	}
+	nestedScope();
+}
+```
+
+If you see, variable `firstName` is declared in the global scope is accessible from the `nestedScope()` function but the variable `lastName` cannot be accessed from outer function because it is in the scope of the nested function and we will get an when we try to do so.
+
+### Closure
+
+Let's See the code first
+
+```
+function scope(){
+	let fullName = "Closure variable";
+	function nestedScope() {
+		console.log(fullName)
+	}
+	return nestedScope;
+}
+
+let closure = scope();
+closure();
+
+```
+
+Instead of calling the `nestedScope()` function directly, we are returning it from the outer function `scope()`. Now we are able to call the outer function and the nested function executes which still has access to the outer scope variable.
+
+\*\*Closure preserves the outer scope inside its inner scope.
+
+Let's see one more example :
+
+```
+function outerScope() {
+	let outerVar = 'Global Scope Variable'
+
+	function innerScope() {
+		console.log(outerVar)
+	}
+	return innerScope;
+}
+
+function closure() {
+	const getInnerScope = innerScope();
+	getInnerScope();
+}
+
+closure();
+
+```
+
+Here, you can see how closure is preserving the reference to outer scope variable in the inner scope function. Through lexical scoping, the javascript engine determines the position of variables inside nested scopes.
