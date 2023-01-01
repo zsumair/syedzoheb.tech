@@ -1,0 +1,77 @@
+---
+layout: "@/layouts/BlogPost"
+title: Javascript Functions
+publishDate: 1 Jan 2023
+description: Functions are first class citizens in javascript.
+tags: ["javascript"]
+---
+
+## Functions
+
+Functions are first class citizens in javascript. Which basically means, you can store functions in variables, pass them to other functions as arguments and you can also return them as values from other functions.
+
+Let's see how we can do that with the types of functions.
+
+## Types of functions
+
+---
+
+### Pure Function
+
+It is a function that produces the same output for the same input. Which means, it returns the same result when you pass the same arguments.
+
+Example:
+
+```
+function sayGreeting(name) {
+	return `Hello ${name}`;
+}
+```
+
+### Anonymous Function
+
+Functions that does not have any name associated with it are called anonymous functions. An anonymous functions is inaccessible after its initial creation, hence we often need to assign it a variable.
+
+Example:
+
+```
+let display = function() {
+	console.log("Hello from anonymous function")
+}
+
+display();
+```
+
+Often times in real world we use anonymous functions as arguments to other functions.
+
+Example:
+
+```
+setInterval(function() {
+	console.log("Anonymous function as argument")
+}, 1000);
+```
+
+We are passing an anonymous function as an argument to `setInterval` method. The above function will execute repeatedly after a delay of 1 second.
+
+### IIFE
+
+IIFE (Immediately invoked function execution) as the implies, executes a function immediately after its declaration. We have to add `()`after declaration to the anonymous function.
+
+Example :
+
+```
+(function() {
+	console.log("IIFE")
+})();
+```
+
+### Arrow Functions
+
+ES6 introduced arrow functions that provide shorthand for declaring anonymous functions.
+
+Example:
+
+```
+const sum = (a,b) => a + b;
+```
