@@ -1,0 +1,73 @@
+---
+layout: "@/layouts/BlogPost"
+title: Javascript Functions Part2
+publishDate: 2 Jan 2023
+description: Functions are first class citizens in javascript.
+tags: ["javascript"]
+---
+
+## Types of Functions - Part2
+
+This article is continuation of previous article on the Types of Functions [PART1](https://www.syedzoheb.tech/posts/types-of-functions-part1)
+
+### Currying Functions
+
+Curry functions does the same as other functions , only they don't call a functions rather transforms it. Currying a function is like forcing a function to take single parameter at a time rather than all at once like instead of `func(x,y,z)` we curry it to `func(x)(y)(z)`.
+
+Example:
+
+```
+const fullName = function(firstName) {
+	return function(lastName) {
+		return firstName + ' ' + lastName
+	}
+}
+
+console.log(fullName('curry')('function'));
+
+```
+
+### Callback Functions
+
+A callback is a function which you pass as an argument to another function for executing later.
+
+Example:
+
+```
+function greeting(name) {
+  console.log(`Hello, ${name}`);
+}
+
+function callbackFunc(callback) {
+  const name = 'Callback'
+  callback(name);
+}
+
+callbackFunc(greeting);
+```
+
+### Higher Order Functions
+
+A regular function that takes one or more functions as arguments and returns a function as a value from it is called a higher order function.
+
+Example:
+
+```
+function calculate(operation, initialValue, numbers) {
+	let total = initialValue;
+
+	for (const number of numbers) {
+		total = operation(total, number);
+	}
+	return total;
+}
+
+function sum(a, b) {
+	return a + b;
+}
+
+calculate(sum, 0, [1, 2, 4]);
+
+```
+
+A difference between callback and Higher order functions is that in callback a function is just passed to another function. Meanwhile, in higher order functions, a function takes another function as argument and returns a function as value.
