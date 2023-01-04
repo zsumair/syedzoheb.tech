@@ -1,0 +1,46 @@
+---
+layout: "@/layouts/BlogPost"
+title: Javascript Useful Array Methods Part 1
+publishDate: 4 Jan 2023
+description: Important array methods in javascript.
+tags: ["javascript"]
+---
+
+## Useful Array Methods - Part 1
+
+### Mutable array methods
+
+Let's first see the array methods that you should be careful before using, mutable array methods.
+
+**Array.pop()** - It doesn't take any parameters, removes the last element from an array and returns that element.
+
+**Array.push()** - It adds one or elements to the end of an array.
+
+**Array.shift()** - It removes first element from an array and returns that element.
+
+**Array.unshift()** - Adds one or more elements to the start of an array and returns new length.
+
+**Array.reverse()** - It reverses the array elements and returns reference to the same array.
+
+**Array.sort()** - It sorts the array elements in ascending order by default, It converts the elements into strings and then sorts according to each character's Unicode value.
+
+**Array.splice()** - Changes array by removing or replacing elements and also add new elements. `splice(start, deleteCount, elem1)` . It returns array of only deleted/removed elements else if added new elements, then it returns an empty array.
+
+```
+let weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+weekdays.pop() // 'Sat'
+
+weekdays.push('Sat') // 'Sat' , length: 7
+
+weekdays.shift() // 'Sun'
+
+weekdays.unshift('Sun') // 'Sun' , length: 7
+
+weekdays.reverse() // [ 'Sat', 'Fri', 'Thu', 'Wed', 'Tue', 'Mon', 'Sun' ]
+
+weekdays.sort() // [ 'Fri', 'Mon', 'Sat', 'Sun', 'Thu', 'Tue', 'Wed' ]
+
+weekdays.splice(3,0,'Feb'); // [ 'Sun', 'Mon', 'Tue', 'Feb', 'Wed', 'Thu', 'Fri', 'Sat' ]
+
+```
