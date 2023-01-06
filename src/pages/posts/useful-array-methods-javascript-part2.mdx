@@ -1,0 +1,136 @@
+---
+layout: "@/layouts/BlogPost"
+title: Javascript Useful Array Methods Part 2
+publishDate: 6 Jan 2023
+description: Important array methods in javascript.
+tags: ["javascript"]
+---
+
+## Useful Array Methods - Part 2
+
+### Immutable Array methods
+
+Now let's see the various array methods that you would encounter in almost all app developments.
+
+#### Array.length
+
+**Returns** - Array length
+
+This method returns the number of elements or length of an array.
+
+```
+let arr = [1,5,6,8,9];
+
+ console.log(arr.length) //  5
+
+```
+
+#### Array.find()
+
+**Returns** - Value of first element which satisfies the given condition and _undefined_ if the condition is not satisfied.
+
+This method returns the value of first element which satisfies the given condition in the callback function.
+
+```
+let arr = [1,5,6,8,9];
+
+arr.find(elem => elem > 5) // 6
+
+```
+
+#### Array.findIndex()
+
+**Returns** - Index of first element which satisfies the given condition and -1 if the condition is not satisfied.
+
+This method returns the index of first element which satisfies the given condition in the callback function.
+
+```
+let arr = [1,5,6,8,9];
+
+arr.findIndex(elem => elem < 5) // 0
+
+```
+
+#### Array.includes()
+
+**Returns** - Boolean value based on the search value.
+
+This method checks if an array contains a specificied value. It returns true if value is found else returns false.
+
+```
+let arr = [1,5,6,8,9];
+
+arr.includes(0) // false
+arr.includes(5) // true
+
+```
+
+#### Array.map()
+
+**Returns** - a new array with results of applying a callback function of every element in the array.
+
+This method calls a callback function on every element in the array and returns a new array of the results of the callback.
+
+```
+let arr = [1,5,6,8,9];
+
+arr.map(elem => elem * 2) // [ 2, 10, 12, 16, 18 ]
+
+```
+
+#### Array.filter()
+
+**Returns** - a new array after applying a callback function on every element in the array if it satisfies the callback condition.
+
+This method invokes a callback function on every element in the array. If the callback function returns true for an element based on the condition specified, then that element is added to the new array and if it returns false then it is skipped and callback moves to next element in the array.
+
+```
+let arr = [1,5,6,8,9];
+
+arr.filter(elem => elem > 5) // [ 6, 8, 9 ]
+
+```
+
+#### Array.reduce()
+
+**Returns** - a single value.
+
+This method reduces the array to a single value. It executes a callback function on every element in the array. The return value is stored in the accumulator. _initialValue_ is optional. If the _initialValue_ is not provided, then the first element acts as accumulator on the first call and the callback won't execute on it.
+
+**Syntax** - `arr.reduce((accumulator, currentValue), initialValue)`
+
+```
+let arr = [1,5,6,8,9];
+
+arr.reduce((acc, cur) => cur + acc) // 29   (without initial value)
+
+arr.reduce(((acc, cur) => cur + acc), 0) // 29  (with initial Value)
+
+arr.reduce(((acc, cur) => cur + acc), 3) // 32  (with initial Value)
+
+```
+
+#### Array.forEach()
+
+**Returns** - undefined
+
+This method executes a function once for every element in the array. But it always returns _undefined_.
+
+Use this if you want to check array elements satisfies a condition and you want to push it to an outside array.
+
+```
+let arr = [1,5,6,8,9];
+
+arr.forEach(elem => elem * 5) // undefined
+
+
+let newarr = []
+
+arr.forEach(elem => {
+  let val = elem * 5
+   newarr.push(val)
+})
+
+console.log(newarr) // [ 5, 25, 30, 40, 45 ]
+
+```
