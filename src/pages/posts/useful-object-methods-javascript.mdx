@@ -1,0 +1,95 @@
+---
+layout: "@/layouts/BlogPost"
+title: Javascript Useful Object Methods
+publishDate: 10 Jan 2023
+description: Important object methods in javascript.
+tags: ["javascript"]
+---
+
+## Useful Object Methods
+
+Objects and Arrays by default are [mutable](https://www.syedzoheb.tech/posts/mutables-and-immutables-in-javascript) in javascript. Objects in Javascript is a collection of **key:value** pairs. It can also consist of methods as properties along with other data types.
+
+Below are most used Object methods in javascript in real time applications.
+
+#### Object.assign()
+
+This method copies values from one or more object(s) to another and returns the modified target object.
+
+```
+const target = { a: 1, b: 2 };
+const source = { b: 4, c: 5 };
+
+const result = Object.assign(target, source)
+
+```
+
+#### Object.is()
+
+This method compares whether two values are same and returns a boolean based on the comparison.
+
+`Object.is` is not equivalent to `===` operator. `===` treats `+0` and `-0` as equal and `NaN` as not equal whereas `Object.is` doesn't.
+
+```
+Object.is(5 , 5) // true
+
+Object.is("true" , "true") // true
+
+Object.is(2 , 5) // false
+
+Object.is("false" , "true") // false
+
+Object.is([], []) // false
+
+const obj1 = { a: 1 };
+const obj2 = { a: 1 };
+
+Object.is(obj1, obj1) // true
+
+Object.is(obj1, obj2) // false
+
+```
+
+#### Object.entries()
+
+This method converts objects key:value pair into array sets
+
+```
+const obj = { a: 1, b: 2 };
+
+Object.entries(obj) // [ [ 'a', 1 ], [ 'b', 2 ] ]
+
+```
+
+#### Object.fromEntries()
+
+This method converts array sets into objects key:value pairs
+
+```
+const obj = [ [ 'a', 1 ], [ 'b', 2 ] ]
+
+Object.fromEntries(obj) // { a: 1, b: 2 }
+
+```
+
+#### Object.keys()
+
+This method creates an array containing keys of an object
+
+```
+const obj = { a: 1, b: 2 }
+
+Object.keys(obj) // [ 'a', 'b' ]
+
+```
+
+#### Object.values()
+
+This method creates an array containing values of an object
+
+```
+const obj = { a: 1, b: 2 }
+
+Object.values(obj) // [ 1, 2 ]
+
+```
