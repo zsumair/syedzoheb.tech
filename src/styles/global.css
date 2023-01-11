@@ -45,3 +45,7 @@
 	-webkit-text-stroke:3px #000;*/
 	text-shadow: 5px 5px 0px #000; 
 }
+
+pre {
+	line-height: 2;
+}

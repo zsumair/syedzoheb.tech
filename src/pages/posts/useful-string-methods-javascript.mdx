@@ -1,0 +1,80 @@
+---
+layout: "@/layouts/BlogPost"
+title: Javascript Useful String Methods
+publishDate: 11 Jan 2023
+description: Important string methods in javascript.
+tags: ["javascript"]
+---
+
+## Useful String Methods
+
+When building applications we have to deal with alot of string related problems. Javascript has many built-in functions that make working with Strings easy.
+
+Below are some of the most used string methods.
+
+#### Strings.includes()
+
+This method performs a case-sensitive string search to determine whether the search string is found in the given string.
+
+It returns a Boolean based on the result.
+
+```
+const text = "Searching for me?";
+
+text.includes("ching") // true
+
+```
+
+#### Strings.slice()
+
+This method takes out a section of string and returns it as a new string without modifying the original string.
+
+```
+const text = "Searching for me?";
+
+text.slice(4) // 'ching for me?'
+text.slice(10) // 'for me?'
+
+```
+
+#### Strings.indexOf()
+
+This method returns the index of the first occurence of the search string in the given string and returns `-1` if it is not found.
+
+```
+const text = "Searching for me?";
+
+text.indexOf("for") // 10
+```
+
+```
+const text1 = "Are you looking,for me?";
+
+const findIndex = text1.indexOf(",") + 1;
+
+text1.slice(findIndex) // 'for me?'
+
+
+```
+
+#### Strings.trim()
+
+This method removes whitespace from both ends of the string and returns a new string without modifying original.
+
+```
+const text = " Searching for me? ";
+
+text.trim() // 'Searching for me?'
+
+```
+
+#### Strings.split()
+
+This method is used to convert a string into an array based on a delimiter or a separator.
+
+```
+const text = "Are you looking for me?";
+
+text.split(" "); // [ 'Are', 'you', 'looking', 'for', 'me?' ]
+
+```
