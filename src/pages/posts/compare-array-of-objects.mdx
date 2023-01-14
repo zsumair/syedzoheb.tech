@@ -1,0 +1,47 @@
+---
+layout: "@/layouts/BlogPost"
+title: Javascript Comparing Two Arrays of Objects
+publishDate: 15 Jan 2023
+description: Comparing two arrays of objects in javascript.
+tags: ["javascript"]
+---
+
+## Comparing Two Arrays of Objects and remove duplicates
+
+If you want to compare two array of objects and filter out the duplicates and return only the unique values from the second array. You can use the following snippet.
+If it is other way and you want to get only the common values just remove the `!` from the `filter` function.
+
+```
+let firstArray = [
+    {name: "A", valueOne: 10, valueTwo: 15},
+    {name: "B", valueOne: 7, valueTwo: 3},
+    {name: "C", valueOne: 11, valueTwo: 12}
+]
+
+let secondArray = [
+    {name: "D", valueOne: 5, valueTwo: 1},
+    {name: "E", valueOne: 2, valueTwo: 23},
+    {name: "C", valueOne: 9, valueTwo: 17},
+    {name: "B", valueOne: 1, valueTwo: 19},
+    {name: "A", valueOne: 30, valueTwo: 20}
+]
+
+const newArray = secondArray.filter(({ name }) => !firstArray.some((e) => e.name === name))
+
+console.log(newArray) // [
+							  { name: 'D', valueOne: 5, valueTwo: 1 },
+							  { name: 'E', valueOne: 2, valueTwo: 23 }
+						  ]
+
+```
+
+```
+let a = [{'name':'bob', 'age':22}, {'name':'alice', 'age':12}, {'name':'mike', 'age':13}];
+
+let b = [{'name':'bob', 'age':62}, {'name':'kevin', 'age':32}, {'name':'alice', 'age':32}];
+
+const result = b.filter(({ name }) => !a.some((e) => e.name === name))
+
+console.log(result) // [ { name: 'kevin', age: 32 } ]
+
+```
