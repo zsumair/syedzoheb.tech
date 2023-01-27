@@ -1,0 +1,37 @@
+---
+layout: "@/layouts/BlogPost"
+title: Debounce and Throttle Basics
+publishDate: 27 Jan 2023
+description: Basics of Debounce and Throttle.
+tags: ["javascript", "basics"]
+---
+
+## Debounce and Throttle
+
+Oftentimes, you will deal with event listeners in javascript. Mostly for the front-end part, calling an animation on scroll, on a click, mouseover etc. What happens is, without realising you may implement something that will cost your app performance, make it slow and cost you more resources on the server if it's related to API calls.
+
+Suppose, you have a search box in your web app. If you implement it directly with `fetch` API, you would do it as
+
+```
+input.addEventListener("input", e => {
+	fetch(`/api/getPosts?q=${e.target.value}`)
+		.then(res => res.json())
+		.then(posts => setPosts(posts))
+})
+```
+
+This will run everytime a user inputs a letter. Which in turn will make the `fetch` request, causing unnecessary multiple API calls for a simple query. This will make the app slow based on the network speed of the user to do the API calls.
+
+In order to tackle these situations, we have two possible ways. **Debounce** & **Throttle**.
+
+Let me describe them in a brief,
+
+### Debounce
+
+It is a way to delay a function execution to a certain time. Until the function is invoked during the delay period, then the delay time is restarted unless nothing happens during delay time then function is called.
+
+### Throttle
+
+Unlike `debounce`, throttle will call the function everytime the delay ends as long as the user is performing the action. For example, In a search box example we used above, if the delay is 1 second then function is executed every 1 second as long as user is typing input. If the user stops typing then function is not called anymore.
+
+It may be a little confusing now. We will discuss these topics in some detail to grasp it completely. It will be covered in separate articles to make it clear.
