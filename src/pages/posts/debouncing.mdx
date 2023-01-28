@@ -1,0 +1,45 @@
+---
+layout: "@/layouts/BlogPost"
+title: Debounce in javascript
+publishDate: 28 Jan 2023
+description: Debouncing in javascript.
+tags: ["javascript", "basics"]
+---
+
+## Debounce
+
+Please read the [Previous article](https://www.syedzoheb.tech/posts/debounce-and-throttle-basics) before continuing with this to understand the primary problem and solutions to that.
+
+**Debouncing** is a pretty simple concept. In simple terms, its like wait-and-call kind of function. When we debounce a function, we wait to see if the user is performing any action during that time and if not we will call the function.
+
+Let's continue with the autocomplete example that we discussed in the [Previous article](https://www.syedzoheb.tech/posts/debounce-and-throttle-basics). Suppose, If a user is typing the word _Movie_ in the text input search. So for every letter the user types, there will be an API call. Which means, just the search text _Movie_ will make total 5 API calls, which is not ideal for both user and the application. Imagine if it is a big word, it will make an API call for every letter the user types. Do we need to make API call for every letter the user is typing? NO. **We should wait till the user has stopped typing for some time before we make an API call**.
+
+That is what we call a Debouce function. Now, let's get into an example to understand better. Logic for debounce is simple in two steps
+
+1. Initialise a timer variable to determine when to invoke the callback function.
+2. Reset the timer when user is typing.
+
+Taking the autocomplete example from before, here is how we will implement it using debounce.
+
+```
+function debounce(callback, delay = 250) {
+	let timer;
+	return (...args) => {
+		clearTimeout(timer);
+		timer = setTimeout(() => { callback(...args) }, delay);
+	}
+}
+
+const autoCompleteSearch = debounce(searchtext => {
+	fetch(`/api/getPosts?q=${searchtext}`)
+		.then(res => res.json())
+		.then(posts => setPosts(posts))
+}, 500)
+
+input.addEventListener("input", e => {
+	autoCompleteSearch(e.target.value);
+})
+
+```
+
+In the above example we are passing the `fetch` call function as `callback` to the debounce function, which returns a new function and we are passing the user input to this newly returned function. It will only run after 500ms after the user stops typing.
