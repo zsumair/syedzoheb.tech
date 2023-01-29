@@ -1,0 +1,42 @@
+---
+layout: "@/layouts/BlogPost"
+title: Throttle in javascript
+publishDate: 29 Jan 2023
+description: Throttle in javascript.
+tags: ["javascript", "basics"]
+---
+
+## Throttle
+
+Please make sure to read through the previous articles [Debounce and Throttle Basics](https://www.syedzoheb.tech/posts/debounce-and-throttle-basics) and [Debounce](https://www.syedzoheb.tech/posts/debouncing).
+
+**Throttle** is another technique to minimize API calls or function invocations when using event listeners. Unlike debounce, throttle invokes callback function at specified regular intervals as long as the event triggger is happening. For example, if we specify the delay as 1 second, it will invoke function immediately and then waits for 1second to pass while the user is still typing/event is triggered and then calls the function again after the delay time until the event becomes inactive.
+
+```
+function throttle(callback, delay = 500){
+	let pauseThrottle = false;
+
+	return (...args) => {
+		if(pauseThrottle) return;
+
+		callback(...args);
+		pauseThrottle = true;
+		setTimeout(() => {
+			pauseThrottle = false;
+		}, delay)
+	}
+}
+
+const autoCompleteSearch = throttle(searchtext => {
+	fetch(`/api/getPosts?q=${searchtext}`)
+		.then(res => res.json())
+		.then(posts => setPosts(posts))
+}, 500)
+
+input.addEventListener("input", e => {
+	autoCompleteSearch(e.target.value);
+})
+
+```
+
+Difference between _Debounce_ and _Throttle_ is that the callback is invoked immediately in _throttle_ and not inside the timeout. The one thing that timeout does is to set the `pauseThrottle` flag. Based on this flag we determine whether to run the callback or pause till the timeout happens.
